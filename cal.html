@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calories Calculator</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  body {
+    background: url('IMAGE/facility.jpg') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 15px;
+  }
+
+  .calculator {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    padding: 25px;
+    width: 100%;
+    max-width: 350px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    animation: fadeInUp 0.8s ease;
+  }
+
+  @keyframes fadeInUp {
+    from { transform: translateY(40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #fff;
+    letter-spacing: 1px;
+  }
+
+  .input-group {
+    position: relative;
+    margin-bottom: 18px;
+    animation: slideIn 0.5s ease forwards;
+    opacity: 0;
+  }
+
+  .input-group:nth-child(2) { animation-delay: 0.1s; }
+  .input-group:nth-child(3) { animation-delay: 0.2s; }
+  .input-group:nth-child(4) { animation-delay: 0.3s; }
+  .input-group:nth-child(5) { animation-delay: 0.4s; }
+  .input-group:nth-child(6) { animation-delay: 0.5s; }
+
+  @keyframes slideIn {
+    from { transform: translateY(15px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .input-group label {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 13px;
+    font-weight: bold;
+    color: #222;
+    transition: 0.3s;
+  }
+
+  .input-group input,
+  .input-group select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255,255,255,0.9);
+    outline: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+
+  .input-group input:focus,
+  .input-group select:focus {
+    box-shadow: 0 0 8px rgba(26, 27, 27, 0.5);
+  }
+
+  .input-group input:focus + label,
+  .input-group input:not(:placeholder-shown) + label,
+  .input-group select:focus + label,
+  .input-group select:not([value=""]) + label {
+    top: -8px;
+    left: 8px;
+    background: rgba(255,255,255,0.9);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    color: #080808;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(135deg, #bbc0bd, #796c64);
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  button:hover {
+    background: linear-gradient(135deg, #796c64, #bbc0bd);
+    transform: scale(1.03);
+    box-shadow: 0 8px 18px rgba(62, 66, 63, 0.4);
+  }
+
+  .result {
+    margin-top: 15px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .result.show {
+    opacity: 1;
+  }
+</style>
+</head>
+<body>
+
+<div class="calculator">
+  <h2>Calories Calculator</h2>
+
+  <div class="input-group">
+    <input type="number" id="age" placeholder=" " required>
+    <label>Age (Years)</label>
+  </div>
+
+  <div class="input-group">
+    <select id="gender" required>
+      <option value="" disabled selected hidden></option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+    <label>Gender</label>
+  </div>
+
+  <div class="input-group">
+    <input type="number" id="height" placeholder=" " required>
+    <label>Height (cm)</label>
+  </div>
+
+  <div class="input-group">
+    <input type="number" id="weight" placeholder=" " required>
+    <label>Weight (kg)</label>
+  </div>
+
+  <div class="input-group">
+    <select id="activity" required>
+      <option value="" disabled selected hidden></option>
+      <option value="1.2">Sedentary</option>
+      <option value="1.375">Lightly active</option>
+      <option value="1.55">Moderately active</option>
+      <option value="1.725">Very active</option>
+      <option value="1.9">Extra active</option>
+    </select>
+    <label>Activity Level</label>
+  </div>
+
+  <button onclick="calculateCalories()">Calculate</button>
+
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+function calculateCalories() {
+  let age = parseInt(document.getElementById('age').value);
+  let gender = document.getElementById('gender').value;
+  let height = parseFloat(document.getElementById('height').value);
+  let weight = parseFloat(document.getElementById('weight').value);
+  let activity = parseFloat(document.getElementById('activity').value);
+  let resultBox = document.getElementById('result');
+
+  if (!age || !height || !weight || !gender || !activity) {
+    resultBox.innerText = "Please fill all fields.";
+    resultBox.classList.add("show");
+    return;
+  }
+
+  let bmr;
+  if (gender === 'male') {
+    bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+  } else {
+    bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+  }
+
+  let calories = bmr * activity;
+  resultBox.innerText = `You need about ${Math.round(calories)} calories/day.`;
+  resultBox.classList.add("show");
+}
+</script>
+
+</body>
+</html>

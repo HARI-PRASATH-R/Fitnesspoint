@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cardio Section</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    body {
+  background: linear-gradient(90deg, rgb(245, 242, 245) 0%, rgb(247, 245, 245) 53%, rgb(235, 235, 235) 100%);
+  font-family: "Poppins", sans-serif;
+}
+
+ul {
+  padding: 0;
+}
+
+ul li {
+  list-style-type: none;
+  height: 200px;
+  width: 300px;
+}
+
+.head {
+  padding: 15px 30px;
+  box-shadow: 15px 20px 20px rgba(145, 143, 143, 0.3), inset 4px 4px 10px rgb(19, 18, 18);
+  animation: fadeDown 1s ease-out;
+}
+
+.main-video {
+    margin-top: 80px;
+  width: 60%;
+  max-width: 800px;
+  border: 4px solid rgb(252, 218, 157);
+  border-radius: 15px;
+  margin-bottom: 80px;
+  animation: popIn 1.2s ease-out;
+}
+
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 80px;
+}
+
+.card {
+  width: 280px;
+  background-color: #e5e5e5;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.card:nth-child(1) { animation-delay: 0.2s; }
+.card:nth-child(2) { animation-delay: 0.4s; }
+.card:nth-child(3) { animation-delay: 0.6s; }
+.card:nth-child(4) { animation-delay: 0.8s; }
+.card:nth-child(5) { animation-delay: 1s; }
+.card:nth-child(6) { animation-delay: 1.2s; }
+.card:nth-child(7) { animation-delay: 1.4s; }
+.card:nth-child(8) { animation-delay: 1.6s; }
+.card:nth-child(9) { animation-delay: 1.8s; }
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.3), inset -4px -4px 10px rgb(185, 184, 184);
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+}
+
+.card h2 {
+  padding: 10px;
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+</style>
+<body>
+  <center>
+    <h1 class="head">CARDIO SECTION</h1>
+
+    <video controls autoplay muted class="main-video">
+      <source src="./VDO/vdo1 (7).mp4 (6).mp4" type="video/mp4"> 
+    </video>
+
+    <ul class="card-list">
+      <div class = "main-card"><li class="card">
+        <a href="https://youtu.be/XR0xeuK5zBU?si=i7CZAmDmhRqELrEx">
+          <img src="./IMAGE/cardio1.png" alt="Jumping Jack">
+          
+        </a>
+      </li><h2>JUMPING JACK</h2></div>
+      <div class = "main-card"><li class="card">
+        <a href="https://youtu.be/u3zgHI8QnqE?si=wKHf-7BZ-Kgtw7fk">
+          <img src="./IMAGE/cardio2.jpg" alt="Jump Rope">
+          
+        </a>
+      </li><h2>JUMP ROPE</h2></div>
+      <div class = "main-card"><li class="card">
+        <a href="https://youtu.be/6_eLpWiNijE?si=97gUAJRG4nnoSP_f">
+          <img src="./IMAGE/cardio3.jpg" alt="Rowing Machine">
+          
+        </a>
+      </li><h2>ROWING MACHINE</h2></div>
+      <div class = "main-card"><li class="card">
+        <a href="https://youtu.be/AQy_c30lNjI?si=cbKcrY3RTHXDuw5s">
+          <img src="./IMAGE/cardio4.jpg" alt="Rowing Machine">
+          
+        </a>
+      </li><h2>SWIMMING</h2></div>
+      <div class = "main-card"><li class="card">
+        <a href="https://youtu.be/yDpCTPOlFMg?si=u-pzLVC9KPmMN_vW">
+          <img src="./IMAGE/cardio5.jpg" alt="Rowing Machine">
+        
+        </a>
+      </li><h2> HIIT (High-Intensity Interval Training)</h2></div>
+      <div class = "main-card"><li class="card">
+        <a href="https://youtube.com/shorts/eRjaon8fNUQ?si=YjP7_3G8tATV7GoH">
+          <img src="./IMAGE/cardio6.jpg" alt="Rowing Machine">
+          
+        </a>
+      </li><h2>HIKING</h2></div>
+      <div class = "main-card"><li class="card">
+        <a href="https://youtu.be/fQqndzvURAU?si=vAa99ebVOhTe4bjX">
+          <img src="./IMAGE/cario7.jpg" alt="Rowing Machine">
+          
+        </a>
+      </li><h2>INDOOR CYCLING</h2></div>
+      <div class = "main-card"><li class="card">
+        <a href="https://youtu.be/jCTEVKRTuS8?si=Oj25CUdqQZZYOwwj">
+          <img src="./IMAGE/cardio8.jpg" alt="Rowing Machine">
+          
+        </a>
+      </li><h2>KICK BOXING</h2></div>
+      <div class = "main-card"><li class="card">
+        <a href="https://youtu.be/_kGESn8ArrU?si=qrrTHAleOm_93OKG">
+          <img src="./IMAGE/cardio9.jpg" alt="Rowing Machine">
+          
+        </a>
+      </li><h2>RUNNING</h2></div>
+      
+    </ul>
+  </center>
+</body>
+</html>

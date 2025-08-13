@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Exercise Task</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+
+  body {
+    background: url('IMAGE/mainimg.jpg') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .task-container {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 20px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    animation: fadeInUp 0.8s ease;
+  }
+
+  @keyframes fadeInUp {
+    from { transform: translateY(40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  h2 {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+
+  .exercise {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+  }
+
+  .exercise img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .exercise p {
+    flex: 1;
+    font-weight: bold;
+    font-size: 16px;
+    color: #222;
+  }
+
+  .exercise input {
+    transform: scale(1.3);
+    cursor: pointer;
+  }
+
+  .exercise.completed {
+    background: rgba(40, 167, 69, 0.85);
+    color: white;
+    transform: scale(1.02);
+  }
+
+  .progress-bar-container {
+    height: 12px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    margin-top: 20px;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(135deg, #28a745, #1e7e34);
+    width: 0%;
+    transition: width 0.4s ease;
+  }
+
+  .progress-text {
+    text-align: center;
+    margin-top: 8px;
+    font-weight: bold;
+    color: #fff;
+  }
+</style>
+</head>
+<body>
+
+<div class="task-container">
+  <h2>🏋️ Daily Exercise Tasks</h2>
+
+  <div class="exercise">
+    
+    <p>20 Push-ups</p>
+    <input type="checkbox" onchange="updateProgress(this)">
+  </div>
+
+  <div class="exercise">
+    
+    <p>15 Squats</p>
+    <input type="checkbox" onchange="updateProgress(this)">
+  </div>
+
+  <div class="exercise">
+    
+    <p>Plank (30 sec)</p>
+    <input type="checkbox" onchange="updateProgress(this)">
+  </div>
+
+  <div class="exercise">
+    
+    <p>30 Jumping Jacks</p>
+    <input type="checkbox" onchange="updateProgress(this)">
+  </div>
+
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+  <div class="progress-text" id="progressText">0% Completed</div>
+</div>
+
+<script>
+function updateProgress(checkbox) {
+  let exerciseDiv = checkbox.parentElement;
+  exerciseDiv.classList.toggle("completed", checkbox.checked);
+
+  let allTasks = document.querySelectorAll(".exercise input");
+  let completedTasks = document.querySelectorAll(".exercise input:checked");
+
+  let percentage = Math.round((completedTasks.length / allTasks.length) * 100);
+  
+  document.getElementById("progressBar").style.width = percentage + "%";
+  document.getElementById("progressText").innerText = percentage + "% Completed";
+}
+</script>
+
+</body>
+</html>
